@@ -2,10 +2,9 @@ package dev.bt52.rpg;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.File;
-import java.io.IOException;
 
 import dev.bt52.rpg.display.Display;
+import dev.bt52.rpg.entities.animate.Player;
 import dev.bt52.rpg.input.KeyHandler;
 
 public class Game implements Runnable {
@@ -21,22 +20,13 @@ public class Game implements Runnable {
 	public String title;
 	public KeyHandler keyHandler;
 	public Organizer organizer;
+	public Player player;
 	
 	public Game(int width, int height, String title) {
 		
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		
-		File currentDirFile = new File(".");
-		String helper = currentDirFile.getAbsolutePath();
-		try {
-			String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());
-			System.out.println(currentDir);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		start();
 		
@@ -49,12 +39,14 @@ public class Game implements Runnable {
 		keyHandler = new KeyHandler();
 		display = new Display(width, height, title, organizer);
 		display.getFrame().addKeyListener(keyHandler);
+		player = new Player(20, 20, 20, 20, organizer);
 		
 	}
 	
 	public void tick() {
 		
 		keyHandler.tick();
+		player.tick();
 		
 	}
 	
@@ -72,7 +64,7 @@ public class Game implements Runnable {
 		g = bs.getDrawGraphics();
 		g.clearRect(0, 0, width, height);
 		
-		g.drawRect(50, 50, 20, 20);
+		player.render(g);
 		
 		bs.show();
 		g.dispose();
@@ -99,6 +91,7 @@ public class Game implements Runnable {
 				
 				tick();
 				render(g);
+				delta--;
 				
 			}
 			
