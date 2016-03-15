@@ -2,7 +2,7 @@ package dev.bt52.rpg.entities.animate;
 
 import java.awt.Graphics;
 
-import dev.bt52.rpg.Organizer;
+import dev.bt52.rpg.Game;
 import dev.bt52.rpg.entities.Entity;
 
 public abstract class Animate extends Entity {
@@ -11,9 +11,9 @@ public abstract class Animate extends Entity {
 	
 	protected double speed;
 	
-	public Animate(int x, int y, int width, int height, Organizer organizer) {
+	public Animate(double x, double y, int width, int height, Game game) {
 		
-		super(x, y, width, height, organizer);
+		super(x, y, width, height, game);
 		speed = DEFAULT_SPEED;
 		
 	}

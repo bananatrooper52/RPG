@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import dev.bt52.rpg.Organizer;
-import dev.bt52.rpg.entities.animate.Player;
 
 public class EntityManager {
 
@@ -16,7 +15,6 @@ public class EntityManager {
 		this.organizer = organizer;
 		
 		entities = new ArrayList<Entity>();
-		addEntity(new Player(50, 50, 50, 50, organizer));
 		
 	}
 	

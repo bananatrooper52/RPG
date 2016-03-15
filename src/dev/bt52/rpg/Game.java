@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 import dev.bt52.rpg.display.Display;
 import dev.bt52.rpg.entities.EntityManager;
 import dev.bt52.rpg.input.KeyHandler;
+import dev.bt52.rpg.states.GameState;
+import dev.bt52.rpg.states.State;
 
 public class Game implements Runnable {
 
@@ -37,6 +39,7 @@ public class Game implements Runnable {
 		System.out.println("Initializing");
 		organizer = new Organizer(this);
 		entityManager = new EntityManager(organizer);
+		State.setState(new GameState(this));
 		keyHandler = new KeyHandler();
 		display = new Display(width, height, title, organizer);
 		display.getFrame().addKeyListener(keyHandler);
@@ -46,7 +49,7 @@ public class Game implements Runnable {
 	public void tick() {
 		
 		keyHandler.tick();
-		entityManager.tick();
+		State.getState().tick();
 		
 	}
 	
@@ -64,7 +67,7 @@ public class Game implements Runnable {
 		g = bs.getDrawGraphics();
 		g.clearRect(0, 0, width, height);
 		
-		entityManager.render(g);
+		State.getState().render(g);
 		
 		bs.show();
 		g.dispose();

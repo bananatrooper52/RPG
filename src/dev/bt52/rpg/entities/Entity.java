@@ -2,24 +2,24 @@ package dev.bt52.rpg.entities;
 
 import java.awt.Graphics;
 
-import dev.bt52.rpg.Organizer;
+import dev.bt52.rpg.Game;
 
 public abstract class Entity {
 
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	protected int width;
 	protected int height;
 	
-	protected Organizer organizer;
+	protected Game game;
 	
-	public Entity(int x, int y, int width, int height, Organizer organizer) {
+	public Entity(double x, double y, int width, int height, Game game) {
 		
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.organizer = organizer;
+		this.game = game;
 		
 	}
 	
