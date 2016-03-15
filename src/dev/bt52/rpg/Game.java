@@ -3,6 +3,7 @@ package dev.bt52.rpg;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import dev.bt52.rpg.assets.Assets;
 import dev.bt52.rpg.display.Display;
 import dev.bt52.rpg.entities.EntityManager;
 import dev.bt52.rpg.input.KeyHandler;
@@ -21,7 +22,6 @@ public class Game implements Runnable {
 	public BufferStrategy bs;
 	public String title;
 	public KeyHandler keyHandler;
-	public Organizer organizer;
 	public EntityManager entityManager;
 	
 	public Game(int width, int height, String title) {
@@ -37,11 +37,10 @@ public class Game implements Runnable {
 	public void init() {
 		
 		System.out.println("Initializing");
-		organizer = new Organizer(this);
-		entityManager = new EntityManager(organizer);
+		entityManager = new EntityManager(this);
 		State.setState(new GameState(this));
 		keyHandler = new KeyHandler();
-		display = new Display(width, height, title, organizer);
+		display = new Display(width, height, title, this);
 		display.getFrame().addKeyListener(keyHandler);
 		
 	}
@@ -78,7 +77,7 @@ public class Game implements Runnable {
 		
 		init();
 		
-		int fps = 60;
+		int fps = Assets.fps;
 		long lt = System.nanoTime();
 		long now;
 		double tpt = 1000000000 / fps;

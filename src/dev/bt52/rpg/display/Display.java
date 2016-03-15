@@ -5,17 +5,15 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import dev.bt52.rpg.Organizer;
+import dev.bt52.rpg.Game;
 
 public class Display {
 
 	public JFrame f;
 	public Canvas c;
-	public Organizer organizer;
+	public Game game;
 	
-	public Display(int width, int height, String title, Organizer organizer) {
-		
-		this.organizer = organizer;
+	public Display(int width, int height, String title, Game game) {
 		
 		f = new JFrame();
 		c = new Canvas();

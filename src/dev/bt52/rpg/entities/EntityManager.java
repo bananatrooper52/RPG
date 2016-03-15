@@ -3,16 +3,16 @@ package dev.bt52.rpg.entities;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import dev.bt52.rpg.Organizer;
+import dev.bt52.rpg.Game;
 
 public class EntityManager {
 
 	public ArrayList<Entity> entities;
-	public Organizer organizer;
+	public Game game;
 	
-	public EntityManager(Organizer organizer) {
+	public EntityManager(Game game) {
 		
-		this.organizer = organizer;
+		this.game = game;
 		
 		entities = new ArrayList<Entity>();
 		
