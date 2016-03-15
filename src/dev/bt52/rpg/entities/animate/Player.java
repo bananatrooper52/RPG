@@ -10,6 +10,8 @@ public class Player extends Animate {
 		
 		super(x, y, width, height, organizer);
 		
+		System.out.println("Adding player");
+		
 	}
 	
 	public void tick() {

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.bt52.rpg.display.Display;
-import dev.bt52.rpg.entities.animate.Player;
+import dev.bt52.rpg.entities.EntityManager;
 import dev.bt52.rpg.input.KeyHandler;
 
 public class Game implements Runnable {
@@ -20,7 +20,7 @@ public class Game implements Runnable {
 	public String title;
 	public KeyHandler keyHandler;
 	public Organizer organizer;
-	public Player player;
+	public EntityManager entityManager;
 	
 	public Game(int width, int height, String title) {
 		
@@ -36,17 +36,17 @@ public class Game implements Runnable {
 		
 		System.out.println("Initializing");
 		organizer = new Organizer(this);
+		entityManager = new EntityManager(organizer);
 		keyHandler = new KeyHandler();
 		display = new Display(width, height, title, organizer);
 		display.getFrame().addKeyListener(keyHandler);
-		player = new Player(20, 20, 20, 20, organizer);
 		
 	}
 	
 	public void tick() {
 		
 		keyHandler.tick();
-		player.tick();
+		entityManager.tick();
 		
 	}
 	
@@ -64,7 +64,7 @@ public class Game implements Runnable {
 		g = bs.getDrawGraphics();
 		g.clearRect(0, 0, width, height);
 		
-		player.render(g);
+		entityManager.render(g);
 		
 		bs.show();
 		g.dispose();
@@ -141,6 +141,12 @@ public class Game implements Runnable {
 	public KeyHandler getKeyHandler() {
 		
 		return keyHandler;
+		
+	}
+	
+	public EntityManager getEntityManager() {
+		
+		return entityManager;
 		
 	}
 	
