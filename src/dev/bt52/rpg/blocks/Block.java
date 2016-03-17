@@ -21,7 +21,7 @@ public class Block {
 	
 	public void render(Graphics g, int x, int y) {
 		
-		g.drawImage(texture, x, y, TILESIZE, TILESIZE, null);
+		g.drawImage(texture, x / TILESIZE, y / TILESIZE, TILESIZE, TILESIZE, null);
 		
 	}
 	

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import dev.bt52.rpg.assets.Assets;
+import dev.bt52.rpg.assets.ImageGetter;
+import dev.bt52.rpg.blocks.Dirt;
 import dev.bt52.rpg.display.Display;
 import dev.bt52.rpg.entities.EntityManager;
 import dev.bt52.rpg.input.KeyHandler;
@@ -23,6 +25,7 @@ public class Game implements Runnable {
 	public String title;
 	public KeyHandler keyHandler;
 	public EntityManager entityManager;
+	public Dirt dirt;
 	
 	public Game(int width, int height, String title) {
 		
@@ -42,6 +45,8 @@ public class Game implements Runnable {
 		keyHandler = new KeyHandler();
 		display = new Display(width, height, title, this);
 		display.getFrame().addKeyListener(keyHandler);
+		dirt = new Dirt(ImageGetter.getImage("/resources/textures/stone.png"), 1);
+		dirt.render(g, 10, 10);
 		
 	}
 	
