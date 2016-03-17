@@ -14,6 +14,8 @@ public class Player extends Animate {
 	
 	public void tick() {
 		
+		super.tick();
+		
 		if(game.getKeyHandler().left == true) {
 			
 			x -= speed;

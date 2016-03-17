@@ -3,6 +3,7 @@ package dev.bt52.rpg.entities.animate;
 import java.awt.Graphics;
 
 import dev.bt52.rpg.Game;
+import dev.bt52.rpg.assets.Assets;
 import dev.bt52.rpg.entities.Entity;
 
 public abstract class Animate extends Entity {
@@ -10,6 +11,8 @@ public abstract class Animate extends Entity {
 	public static final double DEFAULT_SPEED = 2;
 	
 	protected double speed;
+	protected double xSpeed;
+	protected double ySpeed;
 	
 	public Animate(double x, double y, int width, int height, Game game) {
 		
@@ -42,6 +45,9 @@ public abstract class Animate extends Entity {
 	}
 	
 	public void moveY() {
+		
+		ySpeed += Assets.gpt;
+		y += ySpeed;
 		
 	}
 	
